@@ -1,43 +1,39 @@
-import { NextLogo } from "./next-logo";
-import { SupabaseLogo } from "./supabase-logo";
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function Hero() {
+  const [username, setUsername] = useState("");
+  const router = useRouter();
+
+  const handleClaim = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!username) return;
+    router.push(`/auth/sign-up?username=${encodeURIComponent(username)}`);
+  };
+
   return (
-    <div className="flex flex-col gap-16 items-center">
-      <div className="flex gap-8 justify-center items-center">
-        <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <SupabaseLogo />
-        </a>
-        <span className="border-l rotate-45 h-6" />
-        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
-          <NextLogo />
-        </a>
+    <div className="flex flex-col gap-16 items-center py-20">
+      <div className="flex flex-col gap-4 items-center">
+        <h1 className="text-5xl font-bold tracking-tight">Everything you are in one simple link.</h1>
+        <p className="text-muted-foreground text-lg">Claim your unique username and start building your page.</p>
+        
+        <form onSubmit={handleClaim} className="flex w-full max-w-sm items-center space-x-2 mt-4">
+          <div className="relative flex-1">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">linktree.clone/</span>
+            <Input 
+              className="pl-28" 
+              placeholder="username" 
+              value={username}
+              onChange={(e) => setUsername(e.target.value.toLowerCase())} 
+            />
+          </div>
+          <Button type="submit">Claim</Button>
+        </form>
       </div>
-      <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
-      <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
-        The fastest way to build apps with{" "}
-        <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          className="font-bold hover:underline"
-          rel="noreferrer"
-        >
-          Supabase
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://nextjs.org/"
-          target="_blank"
-          className="font-bold hover:underline"
-          rel="noreferrer"
-        >
-          Next.js
-        </a>
-      </p>
       <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
     </div>
   );

@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import LoginWithGoogle from "@/components/login-with-google";
 
 export function LoginForm({
   className,
@@ -92,6 +93,14 @@ export function LoginForm({
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
+            </div>
+            <div className="my-4 flex items-center justify-center">
+              <hr className="w-full border-border" />
+              <span className="mx-2 text-sm text-gray-400">or</span>
+              <hr className="w-full border-border" />
+            </div>
+            <div className="flex justify-between items-center w-full">
+              <LoginWithGoogle />
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
