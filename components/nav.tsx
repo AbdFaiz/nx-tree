@@ -4,23 +4,25 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { Suspense } from "react";
+import { Layers } from "lucide-react";
 
 const Nav = () => {
   return (
-    <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-      <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-        <div className="flex gap-5 items-center font-semibold">
-          <Link href={"/"}>Nx Tree</Link>
+    <nav className="w-full sticky top-0 z-50 flex justify-center border-b bg-background/80 backdrop-blur-md">
+      <div className="w-full max-w-6xl flex justify-between items-center h-16 px-6">
+        <div className="flex gap-2 items-center">
+          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <Layers className="w-5 h-5 text-primary-foreground" />
+          </div>
+          <span className="font-bold tracking-tighter text-xl">Nx Tree</span>
         </div>
-        <div className="flex gap-4 items-center">
+        
+        <div className="flex gap-3 items-center">
           <ThemeSwitcher />
-          {!hasEnvVars ? (
-            <EnvVarWarning />
-          ) : (
-            <Suspense>
-              <AuthButton />
-            </Suspense>
-          )}
+          <div className="h-6 w-[1px] bg-border mx-2" />
+           <Suspense>
+            <AuthButton />
+          </Suspense>
         </div>
       </div>
     </nav>
