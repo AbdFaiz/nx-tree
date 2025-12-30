@@ -44,7 +44,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] w-full flex items-center overflow-hidden bg-background px-6 lg:px-12">
+    <section className="relative min-h-[80vh] w-full flex items-center overflow-hidden bg-background px-6 lg:px-12">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 -z-10 w-[50%] h-full bg-gradient-to-l from-primary/5 to-transparent opacity-50" />
 

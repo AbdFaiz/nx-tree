@@ -1,5 +1,7 @@
-import { Featured } from "@/components/featured";
-import { Hero } from "@/components/hero";
+import { FAQ } from "@/components/landing/faq";
+import { Hero } from "@/components/landing/hero";
+import { HowItWorks } from "@/components/landing/howitworks";
+import { Preview } from "@/components/landing/preview";
 import Nav from "@/components/nav";
 
 export default function Home() {
@@ -10,7 +12,9 @@ export default function Home() {
         {/* Kontainer utama dibuat lebih lebar untuk elemen dekoratif */}
         <div className="w-full max-w-7xl mx-auto px-6">
           <Hero />
-          <Featured />
+          <HowItWorks />
+          <Preview />
+          <FAQ />
         </div>
       </div>
     </main>
