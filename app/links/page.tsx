@@ -1,4 +1,3 @@
-// app/dashboard/links/page.tsx
 import { Suspense } from "react";
 import Header from "@/components/header";
 import { LinkEditor } from "@/components/dashboard/link-editor";
@@ -6,12 +5,16 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-export default async function LinksPage() {
+async function LinksContent() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   
   if (!user) redirect("/auth/login");
 
+  return <LinkEditor userId={user.id} />;
+}
+
+export default function LinksPage() {
   return (
     <div className="min-h-screen bg-zinc-50/50">
       <Header isFixed />
@@ -24,7 +27,6 @@ export default async function LinksPage() {
             </p>
           </div>
 
-          {/* Suspense diletakkan di sini untuk membungkus LinkEditor */}
           <Suspense
             fallback={
               <div className="flex flex-col items-center py-20 gap-4">
@@ -35,7 +37,8 @@ export default async function LinksPage() {
               </div>
             }
           >
-            <LinkEditor userId={user.id} />
+            {/* Pindah logika auth ke dalam sini */}
+            <LinksContent />
           </Suspense>
         </div>
       </main>
