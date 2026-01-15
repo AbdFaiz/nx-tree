@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
-import { ProfileContent } from "../../components/dashboard/profile-content";
+import { ProfileContent } from "@/components/dashboard/profile-content";
 
 type Props = {
   params: Promise<{ username: string }>;
@@ -16,7 +16,6 @@ export default function PublicProfilePage({ params }: Props) {
         </div>
       </div>
     }>
-      {/* Oper Promise params-nya langsung ke bawah */}
       <ProfileContent paramsPromise={params} />
     </Suspense>
   );

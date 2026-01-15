@@ -5,7 +5,8 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-async function LinksContent() {
+// 1. Pindahkan logika pengambilan data ke komponen baru
+async function LinkEditorWrapper() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   
@@ -15,6 +16,7 @@ async function LinksContent() {
 }
 
 export default function LinksPage() {
+  // Hapus async dari LinksPage karena logikanya sudah pindah ke LinkEditorWrapper
   return (
     <div className="min-h-screen bg-zinc-50/50">
       <Header isFixed />
@@ -37,8 +39,8 @@ export default function LinksPage() {
               </div>
             }
           >
-            {/* Pindah logika auth ke dalam sini */}
-            <LinksContent />
+            {/* 2. Panggil wrapper di sini */}
+            <LinkEditorWrapper />
           </Suspense>
         </div>
       </main>
