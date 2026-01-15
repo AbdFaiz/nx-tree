@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         hostname: "media.tenor.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.supabase.co",
+        pathname: "/**",
+      },
     ],
   },
 };

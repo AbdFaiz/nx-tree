@@ -4,7 +4,7 @@ import { ArrowRight, PlayCircle } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-4 py-20 lg:px-8 lg:py-32">
+    <section id="hero" className="relative overflow-hidden px-4 py-20 lg:px-8 lg:py-32">
       <div className="max-w-7xl mx-auto">
         <div className="text-center space-y-10">
           <div className="space-y-6">
@@ -22,12 +22,12 @@ export function Hero() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button asChild size="lg" className="py- px-8 text-md font-semibold shadow-lg shadow-primary/20">
+            <Button asChild size="lg" className="py- px-8 text-md font-semibold shadow-lg shadow-primary/20 hover:border hover:border-primary hover:text-primary hover:bg-transparent">
               <Link href="/dashboard" className="flex items-center gap-2">
                 Get Started For Free <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="py- px-8 text-md font-semibold transition-all hover:bg-primary/5">
+            <Button asChild size="lg" variant="outline" className="py- px-8 text-md font-semibold transition-all border-primary hover:bg-primary hover:text-primary-foreground">
               <Link href="/demo" className="flex items-center gap-2">
                 <PlayCircle className="w-4 h-4" /> See How It Works
               </Link>
@@ -37,7 +37,7 @@ export function Hero() {
           {/* Social Proof / Partners */}
           <div className="pt-20">
             <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground/60 mb-8">
-              Trusted by tech teams at
+              Trusted by
             </p>
             <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 grayscale opacity-50 contrast-125">
               <span className="text-2xl font-bold tracking-widest opacity-60 hover:opacity-100">CREATOR</span>

@@ -13,30 +13,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import LoginWithGoogle from "./login-with-google";
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const searchParams = useSearchParams();
-
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    const u = searchParams.get("username");
-    if (u) {
-      setUsername(u);
-    }
-  }, [searchParams]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,14 +46,11 @@ export function SignUpForm({
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/auth/callback`,
-          // DATA USERNAME DISIMPAN DI SINI (user_metadata)
-          data: {
-            username: username,
-          },
         },
       });
       if (error) throw error;
-      router.push("/auth/sign-up-success");
+      router.push("/dashboard");
+      router.refresh();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -90,17 +77,6 @@ export function SignUpForm({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="username">Username</Label>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="nxtree"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
                 />
               </div>
               <div className="grid gap-2">

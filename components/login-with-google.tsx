@@ -8,10 +8,11 @@ export default function LoginWithGoogle() {
   const supabase = createClient();
 
   const login = async () => {
+    const origin = window.location.origin;
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
+        redirectTo: `${origin}/auth/callback?next=/dashboard`,
       },
     });
   };
